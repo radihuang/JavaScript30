@@ -21,6 +21,30 @@ h1 {
   margin-bottom: 0;
 }
 
+.controls {
+  width: 600px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.timer {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.flash {
+  animation: flash 0.5s step-end 8;
+}
+
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}
+
 .score {
   background:rgba(255,255,255,0.2);
   padding:0 3rem;
