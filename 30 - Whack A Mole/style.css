@@ -60,6 +60,16 @@ h1 {
   margin:0 auto;
 }
 
+.asset-link {
+  text-align: center;
+  font-size: 3rem;
+  margin: 1.5rem 0;
+}
+
+.asset-link a {
+  color: #000;
+}
+
 .hole {
   flex: 1 0 33.33%;
   overflow: hidden;
@@ -79,8 +89,8 @@ h1 {
 }
 
 .mole {
-  background:url('mole.svg') bottom center no-repeat;
-  background-size:60%;
+  background:url('kokudo-man.svg') bottom center no-repeat;
+  background-size:80%;
   position: absolute;
   top: 100%;
   width: 100%;
