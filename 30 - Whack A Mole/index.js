@@ -1,11 +1,14 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
+const countdownDisplay = document.querySelector('.countdown');
 
 let lastHole;
 let timeUp = false;
 let score = 0;
 let GAMETIME = 30000;
+let countdownInterval;
+let gameTimeout;
 
 function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -32,14 +35,42 @@ function molePop() {
     }, popTime);
 }
 
+function updateCountdownDisplay(time) {
+    countdownDisplay.textContent = time;
+}
+
+function startCountdown() {
+    clearInterval(countdownInterval);
+    countdownDisplay.classList.remove('flash');
+
+    let remaining = GAMETIME / 1000;
+    updateCountdownDisplay(remaining);
+
+    countdownInterval = setInterval(() => {
+        remaining -= 1;
+        if (remaining <= 0) {
+            updateCountdownDisplay(0);
+            countdownDisplay.classList.add('flash');
+            clearInterval(countdownInterval);
+        } else {
+            updateCountdownDisplay(remaining);
+        }
+    }, 1000);
+}
+
 function startGame() {
     score = 0;
     scoreBoard.textContent = score;
 
+    clearTimeout(gameTimeout);
+    clearInterval(countdownInterval);
+
     timeUp = false;
+    startCountdown();
     molePop();
-    setTimeout(() => {
+    gameTimeout = setTimeout(() => {
         timeUp = true;
+        countdownDisplay.classList.add('flash');
     }, GAMETIME);
 }
 
